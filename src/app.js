@@ -2,7 +2,7 @@ require("./db/connection")
 
 const yargs = require("yargs");
 
-const { addMovie, listMovies } = require("./movie/movieMethods.js")
+const { addMovie, listMovies, deleteMovie } = require("./movie/movieMethods.js")
 
 const app = async (args) => {
     switch (process.argv[2]){
@@ -11,7 +11,10 @@ const app = async (args) => {
             break;
         case "list":
             listMovies();
-        break;
+            break;
+        case "del":
+            deleteMovie({title: args.title, actor: args.actor});
+            break;
         default:
             console.log("Incorrect command")
         break;
